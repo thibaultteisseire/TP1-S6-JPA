@@ -32,4 +32,8 @@ public class Personne {
     
     @OneToMany(mappedBy = "client")
     private List<Transaction> achats = new LinkedList();
+
+    public Personne(String perso, String _rue_du_perso) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

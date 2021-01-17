@@ -24,4 +24,8 @@ public class Artiste extends Personne{
     
     @OneToMany(mappedBy = "auteur")
     private List<Tableau> oeuvres = new LinkedList();
+
+    public Artiste(String perso, String _rue_du_perso) {
+        super(perso, _rue_du_perso);
+    }
 }
