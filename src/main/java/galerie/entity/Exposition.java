@@ -6,6 +6,7 @@
 package galerie.entity;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.*;
@@ -35,8 +36,19 @@ public class Exposition {
     private int duree;
     
     @OneToMany(mappedBy = "lieuDeVente")
-    private List<Transaction> ventes;
-    public List<Transaction> getVentes() {
-        return ventes;
+    private List<Transaction> ventes = new LinkedList();
+    
+    @ManyToMany(mappedBy = "accrochage")
+    private List<Tableau> oeuvres = new LinkedList();
+    
+    @ManyToOne
+    private List<Exposition> evenements = new LinkedList();
+
+    public float CA(){
+        float calculCA=0;
+        for(Transaction t:ventes){
+            calculCA += t.getPrixVente();
+        }
+        return calculCA;
     }
 }

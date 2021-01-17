@@ -5,6 +5,7 @@
  */
 package galerie.entity;
 
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.*;
@@ -30,8 +31,5 @@ public class Personne {
     private String adresse;
     
     @OneToMany(mappedBy = "client")
-    private List<Transaction> achats;
-    public List<Transaction> getAchats() {
-        return achats;
-    }
+    private List<Transaction> achats = new LinkedList();
 }

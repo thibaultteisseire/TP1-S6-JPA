@@ -1,4 +1,5 @@
 package galerie.entity;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.*;
@@ -21,8 +22,15 @@ public class Galerie {
     private String adresse;
     
     @OneToMany(mappedBy = "organisateur")
-    private List<Exposition> evenements;
-    public List<Exposition> getEvenements() {
-        return evenements;
+    private List<Exposition> evenements = new LinkedList();
+
+    public float CAannuel(int annee){
+        float calculCAannuel =0;
+        for(Exposition e : evenements){
+            if(e.getDebut().getYear()==annee && (e.getDebut().getDayOfYear()+e.getDuree())<365){
+            calculCAannuel += e.CA();
+            }
+        }
+        return calculCAannuel;
     }
 }

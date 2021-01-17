@@ -6,6 +6,7 @@
 package galerie.entity;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.*;
@@ -30,9 +31,12 @@ public class Transaction {
     @NonNull
     private float prixVente;
     
-    @OneToOne(mappedBy = "vendu")
-    private List<Tableau> oeuvre;
-    public List<Tableau> getOeuvre() {
-        return oeuvre;
-    }
+    @OneToOne
+    private List<Tableau> oeuvre = new LinkedList();
+
+    @ManyToOne
+    private List<Exposition> lieuDeVente = new LinkedList();
+
+    @ManyToOne
+    private List<Personne> client = new LinkedList();
 }
